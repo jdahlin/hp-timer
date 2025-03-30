@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HP Timer - Högskoleprovet</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Start/Settings Screen -->
+    <div id="settingsScreen" class="container">
+        <h1>HP Timer</h1>
+
+        <div class="radio-group">
+            <div class="radio-group-title">Testtyp:</div>
+            <div class="checkbox-container">
+                <input type="radio" id="verbal" name="testType" value="verbal">
+                <label for="verbal">Verbal</label>
+            </div>
+            <div class="checkbox-container">
+                <input type="radio" id="kvantitativ" name="testType" value="kvantitativ">
+                <label for="kvantitativ">Kvantitativ</label>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="grid-item">
+                <div class="form-group">
+                    <label for="totalTime">Total tid (minuter):</label>
+                    <input type="number" id="totalTime" value="55" min="1" max="120">
+                </div>
+            </div>
+            <div class="grid-item">
+                <div class="form-group">
+                    <label for="reserveTime">Spara tid till slutet (%):</label>
+                    <input type="number" id="reserveTime" value="15" min="0" max="50">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group checkbox-container">
+            <input type="checkbox" id="sectionNotification" checked>
+            <label for="sectionNotification">Visuell notifikation när sektionen är slut</label>
+        </div>
+        <div class="form-group checkbox-container">
+            <input type="checkbox" id="itemNotificationEnabled">
+            <label for="itemNotificationEnabled">Visuell notifikation per uppgift</label>
+        </div>
+
+        <div id="testTypeDisplay" style="font-weight:bold;margin:15px 0;text-align:center;font-size:18px;"></div>
+        <button id="startTestBtn" class="btn btn-success btn-large" disabled>Starta Test</button>
+    </div>
+
+    <!-- Timer Screen -->
+    <div id="timerScreen" class="container hidden">
+        <h1 id="currentSectionTitle">Sektion</h1>
+        <div class="section-info" id="sectionInfo">
+            <div class="notification" id="timeNotification">TIDEN ÄR SLUT!</div>
+            <div>Tid kvar för nuvarande sektion:</div>
+            <div id="sectionTimeLeft" class="big-number">00:00</div>
+            <div class="progress-text">Uppgift <span id="completedItems">0</span> av <span id="totalItems">0</span> avklarad</div>
+            <div class="progress-container">
+                <div id="progressBar" class="progress-bar" style="width:100%"></div>
+            </div>
+        </div>
+        <div class="timer-display">
+            <div>Total tid kvar:</div>
+            <div id="totalTimeLeft" class="medium-number">55:00</div>
+        </div>
+        <div class="controls">
+            <button id="pauseBtn" class="btn btn-warning">Pausa</button>
+            <button id="nextBtn" class="btn btn-primary">Nästa Sektion (Mellanslag)</button>
+        </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="resultsScreen" class="container hidden">
+        <h1>Resultat</h1>
+        <h2>Tid spenderad per sektion:</h2>
+        <table id="resultsTable">
+            <thead>
+                <tr>
+                    <th>Sektion</th>
+                    <th>Planerad tid</th>
+                    <th>Använd tid</th>
+                    <th>Sparad/Överanvänd tid</th>
+                </tr>
+            </thead>
+            <tbody id="resultsBody">
+                <!-- Results will be inserted here -->
+            </tbody>
+        </table>
+        <button id="restartBtn" class="btn btn-primary btn-large" style="margin-top:20px;">Starta om</button>
+    </div>
+
+    <div id="itemNotification" class="item-notification">Uppgift avklarad!</div>
+
+    <footer>
+        <p>HP Timer &copy; 2023 | <a href="https://github.com/yourusername/hp-timer" target="_blank">GitHub</a></p>
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/timer.js"></script>
+</body>
+</html>
